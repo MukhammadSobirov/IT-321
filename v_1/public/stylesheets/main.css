@@ -1,0 +1,74 @@
+body {
+    text-align: center;
+    font-family: 'Archivo Narrow', sans-serif;
+    background-color: #eeeeee;
+}
+
+.row.form {
+    margin: 3% 33.3%;
+    background-color: #ffffff;
+    border-radius: 3%;
+    box-shadow: 0px 0px 10px -1px rgba(48,56,65,1);
+}
+
+hr.style-one {
+    border: 0;
+    height: 1px;
+    background: #303841;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+.btn.btn-success.form{
+    margin-bottom: 3%;
+    background-color: #303841;
+    color: #eeeeee;
+    border-color: #303841;
+}
+
+.btn.btn-success.form:hover{
+    background-color: #00adb5;
+    color: #eeeeee;
+    border-color: #00adb5;
+}
+
+.btn.trash{
+    color: #eeeeee;
+    background-color: #ff5722;
+    border-color: #ff5722;
+}
+
+
+
+.btn.edit{
+    color: #eeeeee;
+    background-color: #00adb5;
+    border-color: #00adb5;
+}
+
+.stat-exp{
+    background-color: #ffffff;
+    border-radius: 5%;
+    box-shadow: 0px 0px 10px -1px rgba(48,56,65,1);
+    margin: 5% 3%;
+}
+
+.stat-bal{
+    background-color: #ffffff;
+    border-radius: 5%;
+    box-shadow: 0px 0px 10px -1px rgba(48,56,65,1);
+    margin: 5% 3%;
+}
+
+.stat-inc{
+    background-color: #ffffff;
+    border-radius: 5%;
+    box-shadow: 0px 0px 10px -1px rgba(48,56,65,1);
+    margin: 5% 3%;
+}
+
+.history{
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px -1px rgba(48,56,65,1);
+    margin-bottom: 5%;
+    border-radius: 1.5%;
+}

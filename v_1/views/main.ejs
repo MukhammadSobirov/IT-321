@@ -1,0 +1,147 @@
+<%- include("partials/header") %>
+
+
+        <div class="row form">
+            <form action="/income" method="POST" class="col-md" >
+                <div class="container form">
+                    <div class="form-group">
+                        <h4>Transactions</h4>
+                        <label  for="date">Date</label>
+                        <input class="form-control" type="date" id="date" name="income[date]"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expense" >Expense</label>
+                        <input type="number" class="form-control" id="expense" name="income[expense_amount]" placeholder="amount" required>
+                    </div>
+                    <div class="form-group">
+                        <label  for="Income">Income</label>
+                        <input class="form-control" type="number" id="number" name="income[income_amount]" placeholder="amount" required>
+                    </div>
+                    <button class="btn btn-success form">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <hr>
+        <section class="stats">
+            <h3>Statistics</h3>
+            <div class="row">
+                <div class="col-md stat-exp">
+                    <!-- Average Expense -->
+                    <% var grandExpMean = []; %> 
+                    <% balance.forEach((el)=>{%>
+                        <% let sumExp =+ el.expense_amount %>
+                        <% grandExpMean.push(sumExp) %>
+                    <%}) %> 
+                    <% let sumExpenseForMean = grandExpMean.reduce((total, amount)=> total + amount); %> 
+                    <% let meanExp = sumExpenseForMean / grandExpMean.length %> 
+                    <h2><i class="fas fa-minus"></i></h2>
+                    <h1> Average Expense: </h1>
+                    <h1>-<%= Math.round(meanExp) %> $</h1>
+                    <!--  -->
+                </div>
+    
+                <div class="col-md stat-exp">
+                    <!-- Overall Expense -->
+                    <% var grandExp = [0,]; %> 
+                    <% balance.forEach((el)=>{%>
+                        <% let sumExp =+ el.expense_amount %>
+                        <% grandExp.push(sumExp) %>
+                    <%}) %> 
+                    <% let sumExpense = grandExp.reduce((total, amount)=> total + amount); %> 
+                    <h2><i class="fas fa-minus"></i></h2>
+                    <h1> Total Expense: </h1>
+                    <h1>-<%= sumExpense %> $</h1>
+                    <!--  -->
+                </div>
+
+                <div class="col-md stat-bal">
+                    <!-- Overall Balance -->
+                    <% var grand = [0,]; %> 
+                    <% balance.forEach((el)=>{%>
+                        <% let sumExpense =+ el.expense_amount %>
+                        <% let sumIncome =+ el.income_amount %>
+                        <% let total = sumIncome - sumExpense %>   
+                        <% grand.push(total) %>
+                    <%}) %> 
+                
+                    <% let sumBalance = grand.reduce((total, amount)=> total + amount); %> 
+                    <h2><i class="fas fa-balance-scale"></i></h2>
+                    <h1> Total Balance: </h1>
+                    <h1><%= sumBalance %> $</h1>
+                    <!--  -->
+                </div>
+    
+                <div class="col-md stat-inc">
+                    <!-- Overall Income -->
+                    <% var grandInc = [0,]; %> 
+                    <% balance.forEach((el)=>{%>
+                        <% let sumInc =+ el.income_amount %>
+                        <% grandInc.push(sumInc) %>
+                    <%}) %> 
+                    <% let sumIncome = grandInc.reduce((total, amount)=> total + amount); %> 
+                    <h2><i class="fas fa-plus"></i></h2>
+                    <h1> Total Income: </h1>
+                    <h1><%= sumIncome %> $</h1>
+                    <!--  -->
+                </div>
+
+                <div class="col-md stat-inc">
+                    <!-- Average Income -->
+                    <% var grandIncMean = [0,]; %> 
+                    <% balance.forEach((el)=>{%>
+                        <% let sumInc =+ el.income_amount %>
+                        <% grandIncMean.push(sumInc) %>
+                    <%}) %> 
+                    <% let sumIncomeMean = grandIncMean.reduce((total, amount)=> total + amount); %> 
+                    <% let meanInc = sumIncomeMean / grandIncMean.length %> 
+                    <h2><i class="fas fa-plus"></i></h2>
+                    <h1> Average Income: </h1>
+                    <h1><%= Math.round(meanInc) %> $</h1>
+                    <!--  -->
+                </div>
+            </div>
+        </section>
+        <hr>
+        
+        <section class="history">
+            <h3>History</h3>
+
+            <% balance.forEach((el)=>{%>
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Date (yyyy-mm-dd)</th>
+                        <th scope="col">Income</th>
+                        <th scope="col">Expense</th>
+                        <th scope="col">Balance</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><%= el.date %></th>
+                        <td><%= el.income_amount %> $</td>
+                        <td><%= el.expense_amount %> $</td>
+                        <td><%= el.income_amount - el.expense_amount %> $ </td>
+                        <td><p><a class="btn edit" href="/income/edit/<%= el.id  %> "><i class="fas fa-edit"></i></a></p> </td>
+                        <td>
+                            <form action="/income/<%= el.id %>?_method=DELETE" method="POST">
+                                <button class="btn trash"><i class="fas fa-trash-alt"></i></button>
+                            </form> 
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+            <%}) %> 
+            
+
+        </section>
+
+       
+
+    
+
+<%- include("partials/footer") %>
