@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-md stat-exp">
                     <!-- Average Expense -->
-                    <% var grandExpMean = []; %> 
+                    <% var grandExpMean = [0, ]; %> 
                     <% balance.forEach((el)=>{%>
                         <% let sumExp =+ el.expense_amount %>
                         <% grandExpMean.push(sumExp) %>

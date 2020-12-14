@@ -6,7 +6,7 @@ let   mongoose                 = require("mongoose");
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect("mongodb://localhost:27017/income_tracker_v1");
+mongoose.connect("");
 
 const Income    = require("./models/Income");
 
